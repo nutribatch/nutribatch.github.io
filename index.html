@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriBatch | Dietitian & Batch Cooking Services</title>
+    <meta name="description"
+        content="Expert dietitian services specializing in batch cooking, meal planning, and personalized nutrition for a healthier lifestyle.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #065f46;
+            --primary-light: #10b981;
+            --secondary: #fbbf24;
+            --accent: #f0fdf4;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('dietitian_hero_batch_cooking_1767436202438.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 0;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards ease-out 0.5s;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--accent);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary);
+        }
+
+        /* Batch Cooking Section */
+        .batch-cooking-section {
+            background-color: var(--accent);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .process-steps {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: -20px;
+            left: 0;
+        }
+
+        /* Forms */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(6, 95, 70, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i data-lucide="leaf"></i> NutriBatch
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#batch-cooking">Batch Cooking</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Book Now</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Eat Better, Live Simpler.</h1>
+            <p>Master the art of batch cooking with professional nutritional guidance designed for your busy lifestyle.
+            </p>
+            <a href="#services" class="btn btn-primary">Explore Services</a>
+        </div>
+    </header>
+
+    <section id="about" class="reveal">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <h2 style="margin-bottom: 24px;">Your Partner in Nutrition</h2>
+            <p style="color: var(--text-light); font-size: 1.1rem;">I believe that healthy eating shouldn't be a chore.
+                My mission is to empower you with the tools, recipes, and strategies to reclaim your time while
+                nourishing your body. Specialized in clinical nutrition and the efficiency of batch cooking.</p>
+        </div>
+    </section>
+
+    <section id="services" class="reveal">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <p
+                style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
+                What I Offer</p>
+            <h2>Nutrition Solutions</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="clipboard-check"></i></div>
+                <h3>Personalized Counseling</h3>
+                <p style="color: var(--text-light); margin-top: 16px;">Tailored nutritional plans focusing on your
+                    unique health goals, dietary needs, and lifestyle preferences.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="clock"></i></div>
+                <h3>Batch Cooking Workshops</h3>
+                <p style="color: var(--text-light); margin-top: 16px;">Step-by-step masterclasses on how to prepare a
+                    week's worth of healthy meals in just a few hours.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="shopping-basket"></i></div>
+                <h3>Pantry Optimization</h3>
+                <p style="color: var(--text-light); margin-top: 16px;">Learn how to shop smart and organize your kitchen
+                    for maximum efficiency and minimum food waste.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="batch-cooking" class="batch-cooking-section">
+        <section class="reveal">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p
+                    style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
+                    The NutriBatch Method</p>
+                <h2>3 Steps to Success</h2>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <span class="step-number">01</span>
+                    <h3>Strategic Planning</h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">We create a modular menu based on seasonal
+                        ingredients that can be cross-utilized across multiple dishes.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">02</span>
+                    <h3>Efficient Prep</h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">Master multi-tasking techniques and knife
+                        skills to minimize active kitchen time while maximizing output.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">03</span>
+                    <h3>Smart Storage</h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">Learn the best cooling and freezing methods
+                        to keep your meals fresh, vibrant, and safe for the entire week.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="testimonials" class="reveal">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <p
+                style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
+                Success Stories</p>
+            <h2>What My Clients Say</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" style="text-align: left;">
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"The batch cooking
+                    workshop was a game-changer. I now save 5 hours every week and actually enjoy my weekday meals!"</p>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div
+                        style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
+                        EA</div>
+                    <div>
+                        <p style="font-weight: 600;">Elena Alvarez</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">Busy Professional</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card" style="text-align: left;">
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"I've tried many diets,
+                    but this personalized counseling focused on sustainable habits. I feel more energetic than ever."
+                </p>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div
+                        style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
+                        MJ</div>
+                    <div>
+                        <p style="font-weight: 600;">Marc Jensen</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">Athlete</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card" style="text-align: left;">
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"The pantry optimization
+                    helped me reduce my grocery bill and significantly decreased food waste in our household."</p>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div
+                        style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
+                        SL</div>
+                    <div>
+                        <p style="font-weight: 600;">Sarah Lewis</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">Mother of three</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <div class="contact-container">
+            <div>
+                <h2 style="margin-bottom: 24px;">Start Your Journey</h2>
+                <p style="color: var(--text-light); margin-bottom: 32px;">Ready to transform your relationship with
+                    food? Contact me today for a free discovery call.</p>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <i data-lucide="mail" style="color: var(--primary);"></i>
+                        <span>hello@nutribatch.com</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <i data-lucide="map-pin" style="color: var(--primary);"></i>
+                        <span>Madrid, Spain (Online Globally)</span>
+                    </div>
+                </div>
+            </div>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="form-name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="form-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="form-message" rows="5" placeholder="Tell me about your health goals..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 24px;">
+            <a href="#" class="logo" style="color: var(--white); justify-content: center;">
+                <i data-lucide="leaf"></i> NutriBatch
+            </a>
+        </div>
+        <p>&copy; 2026 NutriBatch Dietetics. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Google Forms Submission via Fetch
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScQD197gYHCajLCHoJQoyntrkRbcN12sRzv2b81rFEo7w00aQ/formResponse';
+
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const formData = new URLSearchParams();
+            formData.append('entry.2019192205', document.getElementById('form-name').value);
+            formData.append('entry.2097420884', document.getElementById('form-message').value);
+            formData.append('emailAddress', document.getElementById('form-email').value);
+
+            try {
+                await fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData.toString()
+                });
+
+                // With no-cors, we can't check response, but submission works
+                btn.innerText = 'Message Sent!';
+                btn.style.backgroundColor = '#10b981';
+                this.reset();
+            } catch (error) {
+                btn.innerText = 'Error. Try again.';
+                btn.style.backgroundColor = '#ef4444';
+            }
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = '';
+                btn.disabled = false;
+            }, 3000);
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Reveal on Scroll Animation
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+
+        // Smooth Navbar Shrink
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                nav.style.padding = "10px 0";
+                nav.style.boxShadow = "var(--shadow)";
+            } else {
+                nav.style.padding = "20px 0";
+                nav.style.boxShadow = "none";
+            }
+        };
+
+    </script>
+</body>
+
+</html>

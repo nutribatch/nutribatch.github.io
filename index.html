@@ -135,13 +135,13 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: calc(100vh + 40px);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('dietitian_hero_batch_cooking_1767436202438.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('image5.png');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             text-align: center;
             color: var(--white);
             margin-bottom: 0;
@@ -307,6 +307,83 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Language Toggle & Flags */
+        .lang-en,
+        .lang-es,
+        .lang-val {
+            display: none;
+        }
+
+        html[lang="en"] .lang-en {
+            display: inline !important;
+        }
+
+        html[lang="es"] .lang-es {
+            display: inline !important;
+        }
+
+        html[lang="val"] .lang-val {
+            display: inline !important;
+        }
+
+        /* For block elements */
+        html[lang="en"] .block-en {
+            display: block !important;
+        }
+
+        html[lang="es"] .block-es {
+            display: block !important;
+        }
+
+        html[lang="val"] .block-val {
+            display: block !important;
+        }
+
+        .lang-flags {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+            align-items: center;
+        }
+
+        .flag-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: var(--transition);
+            opacity: 0.6;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .flag-btn:hover,
+        .flag-btn.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .flag-btn img,
+        .flag-btn svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Nav Adjustments */
+        @media (max-width: 768px) {
+            .lang-flags {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -315,33 +392,104 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <i data-lucide="leaf"></i> NutriBatch
+                <i data-lucide="leaf"></i>
+                NutriBatch
             </a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#batch-cooking">Batch Cooking</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about"><span class="lang-en">About</span><span class="lang-es">Sobre Mí</span><span
+                            class="lang-val">Sobre Mi</span></a></li>
+                <li><a href="#services"><span class="lang-en">Services</span><span class="lang-es">Servicios</span><span
+                            class="lang-val">Serveis</span></a>
+                </li>
+                <li><a href="#batch-cooking"><span class="lang-en">Batch Cooking</span><span class="lang-es">Batch
+                            Cooking</span><span class="lang-val">Batch Cooking</span></a></li>
+                <li><a href="#contact"><span class="lang-en">Contact</span><span class="lang-es">Contacto</span><span
+                            class="lang-val">Contacte</span></a>
+                </li>
             </ul>
-            <a href="#contact" class="btn btn-primary">Book Now</a>
+            <div style="display: flex; align-items: center;">
+                <a href="#contact" class="btn btn-primary">
+                    <span class="lang-en">Book Now</span>
+                    <span class="lang-es">Reserva Ahora</span>
+                    <span class="lang-val">Reserva Ara</span>
+                </a>
+                <div class="lang-flags">
+                    <button class="flag-btn" onclick="setLanguage('en')" id="btn-en" title="English">
+                        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0v60h60V0H0z" fill="#00247d" />
+                            <path d="M0 0l60 60m0-60L0 60" stroke="#fff" stroke-width="6" />
+                            <path d="M0 0l60 60m0-60L0 60" stroke="#cf142b" stroke-width="4" />
+                            <path d="M30 0v60M0 30h60" stroke="#fff" stroke-width="10" />
+                            <path d="M30 0v60M0 30h60" stroke="#cf142b" stroke-width="6" />
+                        </svg>
+                    </button>
+                    <button class="flag-btn" onclick="setLanguage('es')" id="btn-es" title="Español">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+                            <rect width="750" height="500" fill="#c60b1e" />
+                            <rect width="750" height="250" y="125" fill="#ffc400" />
+                        </svg>
+                    </button>
+                    <button class="flag-btn" onclick="setLanguage('val')" id="btn-val" title="Valencià">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+                            <rect width="750" height="500" fill="#f4b73b" />
+                            <path fill="#c7042c" d="M0 50h750v50H0zm0 100h750v50H0zm0 100h750v50H0zm0 100h750v50H0z" />
+                            <rect width="150" height="500" fill="#006aac" />
+                            <path fill="none" stroke="#f4b73b" stroke-width="10" d="M21 21v458" />
+                            <path fill="#c7042c" d="M21 0h10v500H21z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <h1>Eat Better, Live Simpler.</h1>
-            <p>Master the art of batch cooking with professional nutritional guidance designed for your busy lifestyle.
+            <h1>
+                <span class="lang-en">Eat Better, Live Simpler.</span>
+                <span class="lang-es">Come Mejor, Vive Más Simple.</span>
+                <span class="lang-val">Menja Millor, Viu Més Simple.</span>
+            </h1>
+            <p>
+                <span class="lang-en">Master the art of batch cooking with professional nutritional guidance designed
+                    for your busy lifestyle.</span>
+                <span class="lang-es">Domina el arte del batch cooking con orientación nutricional profesional diseñada
+                    para tu estilo de vida.</span>
+                <span class="lang-val">Domina l'art del batch cooking amb orientació nutricional professional dissenyada
+                    per al teu estil de vida.</span>
             </p>
-            <a href="#services" class="btn btn-primary">Explore Services</a>
+            <a href="#services" class="btn btn-primary">
+                <span class="lang-en">Explore Services</span>
+                <span class="lang-es">Explorar Servicios</span>
+                <span class="lang-val">Explorar Serveis</span>
+            </a>
         </div>
     </header>
 
     <section id="about" class="reveal">
         <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-            <h2 style="margin-bottom: 24px;">Your Partner in Nutrition</h2>
-            <p style="color: var(--text-light); font-size: 1.1rem;">I believe that healthy eating shouldn't be a chore.
-                My mission is to empower you with the tools, recipes, and strategies to reclaim your time while
-                nourishing your body. Specialized in clinical nutrition and the efficiency of batch cooking.</p>
+            <h2 style="margin-bottom: 24px;">
+                <span class="lang-en">Your Partner in Nutrition</span>
+                <span class="lang-es">Tu Aliada en Nutrición</span>
+                <span class="lang-val">La teua Aliada en Nutrició</span>
+            </h2>
+            <p style="color: var(--text-light); font-size: 1.1rem;">
+                <span class="lang-en">Hello, my name is Paula! I hold a BSc in Human Nutrition and Dietetics from the
+                    University of Valencia and a Master's in Sports Nutrition from UCAM. Having lived in Spain, the US,
+                    Canada, and now Switzerland, my mission is to help you eat healthier and live better, even with
+                    nowadays busy lifestyle. I offer practical alternatives so that a lack of time is never an excuse to
+                    compromise your health!</span>
+                <span class="lang-es">Me llamo Paula. Soy graduada en Nutrición Humana y Dietética por la Universidad de
+                    Valencia y tengo un Máster en Nutrición Deportiva por la UCAM. Habiendo vivido en España, EE. UU.,
+                    Canadá y ahora Suiza, mi misión es ayudarte a comer más sano y vivir mejor, incluso con el ajetreado
+                    estilo de vida actual. ¡Ofrezco alternativas prácticas para que la falta de tiempo nunca sea una
+                    excusa para descuidar tu salud!</span>
+                <span class="lang-val">Em dic Paula. Soc graduada en Nutrició Humana i Dietètica per la Universitat de
+                    València i tinc un Màster en Nutrició Esportiva per la UCAM. Havent viscut a Espanya, els EUA, el
+                    Canadà i ara Suïssa, la meua missió és ajudar-te a menjar més sa i viure millor, fins i tot amb
+                    l'atrafegat estil de vida actual. Oferisc alternatives pràctiques perquè la falta de temps mai siga
+                    una excusa per descuidar la teua salut!</span>
+            </p>
         </div>
     </section>
 
@@ -349,27 +497,110 @@
         <div style="text-align: center; margin-bottom: 40px;">
             <p
                 style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
-                What I Offer</p>
-            <h2>Nutrition Solutions</h2>
+                <span class="lang-en">What I Offer</span>
+                <span class="lang-es">Qué Ofrezco</span>
+                <span class="lang-val">Què Oferisc</span>
+            </p>
+            <h2>
+                <span class="lang-en">Nutrition Solutions</span>
+                <span class="lang-es">Soluciones Nutricionales</span>
+                <span class="lang-val">Solucions Nutricionals</span>
+            </h2>
         </div>
-        <div class="services-grid">
+        <!-- Main Services -->
+        <div class="services-grid"
+            style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 60px;">
             <div class="service-card">
                 <div class="service-icon"><i data-lucide="clipboard-check"></i></div>
-                <h3>Personalized Counseling</h3>
-                <p style="color: var(--text-light); margin-top: 16px;">Tailored nutritional plans focusing on your
-                    unique health goals, dietary needs, and lifestyle preferences.</p>
+                <h3>
+                    <span class="lang-en">Personalized Counseling</span>
+                    <span class="lang-es">Asesoramiento Personalizado</span>
+                    <span class="lang-val">Assessorament Personalitzat</span>
+                </h3>
+                <p style="color: var(--text-light); margin-top: 16px;">
+                    <span class="lang-en">Tailored nutritional plans focusing on your unique health goals, dietary
+                        needs, and lifestyle preferences.</span>
+                    <span class="lang-es">Planes nutricionales adaptados a tus objetivos de salud únicos, necesidades
+                        dietéticas y preferencias de estilo de vida.</span>
+                    <span class="lang-val">Plans nutricionals adaptats als teus objectius de salut únics, necessitats
+                        dietètiques i preferències d'estil de vida.</span>
+                </p>
             </div>
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="clock"></i></div>
-                <h3>Batch Cooking Workshops</h3>
-                <p style="color: var(--text-light); margin-top: 16px;">Step-by-step masterclasses on how to prepare a
-                    week's worth of healthy meals in just a few hours.</p>
+                <div class="service-icon"><i data-lucide="chef-hat"></i></div>
+                <h3>
+                    <span class="lang-en">Private Batch Cooking</span>
+                    <span class="lang-es">Batch Cooking Privado</span>
+                    <span class="lang-val">Batch Cooking Privat</span>
+                </h3>
+                <p style="color: var(--text-light); margin-top: 16px;">
+                    <span class="lang-en">I handle everything: grocery shopping, cooking in your kitchen, and preparing
+                        your weekly meals so you don't have to.</span>
+                    <span class="lang-es">Me encargo de todo: la compra, cocinar en tu cocina y preparar tus comidas
+                        semanales para que tú no tengas que hacerlo.</span>
+                    <span class="lang-val">Me'n ocupe de tot: la compra, cuinar a la teua cuina i preparar els teus
+                        menjars setmanals perquè tu no hages de fer-ho.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Extras / Complementary Services -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h3>
+                <span class="lang-en">Complementary Services</span>
+                <span class="lang-es">Servicios Complementarios</span>
+                <span class="lang-val">Serveis Complementaris</span>
+            </h3>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="ruler"></i></div>
+                <h3>
+                    <span class="lang-en">Anthropometric Assessment (ISAK I)</span>
+                    <span class="lang-es">Valoración Antropométrica (ISAK I)</span>
+                    <span class="lang-val">Valoració Antropomètrica (ISAK I)</span>
+                </h3>
+                <p style="color: var(--text-light); margin-top: 16px;">
+                    <span class="lang-en">Precise body composition measurements according to international
+                        standards.</span>
+                    <span class="lang-es">Mediciones precisas de composición corporal según estándares
+                        internacionales.</span>
+                    <span class="lang-val">Mesuraments precisos de composició corporal segons estàndards
+                        internacionals.</span>
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="users"></i></div>
+                <h3>
+                    <span class="lang-en">Batch Cooking Workshops</span>
+                    <span class="lang-es">Talleres de Batch Cooking</span>
+                    <span class="lang-val">Tallers de Batch Cooking</span>
+                </h3>
+                <p style="color: var(--text-light); margin-top: 16px;">
+                    <span class="lang-en">Step-by-step masterclasses on how to prepare a week's worth of healthy meals
+                        in just a few hours.</span>
+                    <span class="lang-es">Clases magistrales paso a paso sobre cómo preparar las comidas de una semana
+                        en solo unas pocas horas.</span>
+                    <span class="lang-val">Classes magistrals pas a pas sobre com preparar els menjars d'una setmana en
+                        només unes poques hores.</span>
+                </p>
             </div>
             <div class="service-card">
                 <div class="service-icon"><i data-lucide="shopping-basket"></i></div>
-                <h3>Pantry Optimization</h3>
-                <p style="color: var(--text-light); margin-top: 16px;">Learn how to shop smart and organize your kitchen
-                    for maximum efficiency and minimum food waste.</p>
+                <h3>
+                    <span class="lang-en">Pantry Optimization</span>
+                    <span class="lang-es">Optimización de Despensa</span>
+                    <span class="lang-val">Optimització de Rebost</span>
+                </h3>
+                <p style="color: var(--text-light); margin-top: 16px;">
+                    <span class="lang-en">Learn how to shop smart and organize your kitchen for maximum efficiency and
+                        minimum food waste.</span>
+                    <span class="lang-es">Aprende a comprar de manera inteligente y organizar tu cocina para la máxima
+                        eficiencia y el mínimo desperdicio de alimentos.</span>
+                    <span class="lang-val">Aprèn a comprar de manera intel·ligent i organitzar la teua cuina per a la
+                        màxima eficiència i el mínim desaprofitament d'aliments.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -379,27 +610,62 @@
             <div style="text-align: center; margin-bottom: 40px;">
                 <p
                     style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
-                    The NutriBatch Method</p>
-                <h2>3 Steps to Success</h2>
+                    <span class="lang-en">The NutriBatch Method</span>
+                    <span class="lang-es">El Método NutriBatch</span>
+                    <span class="lang-val">El Mètode NutriBatch</span>
+                </p>
+                <h2>
+                    <span class="lang-en">3 Steps to Success</span>
+                    <span class="lang-es">3 Pasos hacia el Éxito</span>
+                    <span class="lang-val">3 Passos cap a l'Èxit</span>
+                </h2>
             </div>
             <div class="process-steps">
                 <div class="step">
                     <span class="step-number">01</span>
-                    <h3>Strategic Planning</h3>
-                    <p style="color: var(--text-light); margin-top: 12px;">We create a modular menu based on seasonal
-                        ingredients that can be cross-utilized across multiple dishes.</p>
+                    <h3>
+                        <span class="lang-en">Strategic Planning</span>
+                        <span class="lang-es">Planificación Estratégica</span>
+                        <span class="lang-val">Planificació Estratègica</span>
+                    </h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">
+                        <span class="lang-en">We create a modular menu based on seasonal ingredients that can be
+                            cross-utilized across multiple dishes.</span>
+                        <span class="lang-es">Creamos un menú modular basado en ingredientes de temporada que se pueden
+                            utilizar en múltiples platos.</span>
+                        <span class="lang-val">Creem un menú modular basat en ingredients de temporada que es poden
+                            utilitzar en múltiples plats.</span>
+                    </p>
                 </div>
                 <div class="step">
                     <span class="step-number">02</span>
-                    <h3>Efficient Prep</h3>
-                    <p style="color: var(--text-light); margin-top: 12px;">Master multi-tasking techniques and knife
-                        skills to minimize active kitchen time while maximizing output.</p>
+                    <h3>
+                        <span class="lang-en">Efficient Prep</span>
+                        <span class="lang-es">Preparación Eficiente</span>
+                        <span class="lang-val">Preparació Eficient</span>
+                    </h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">
+                        <span class="lang-en">Master multi-tasking techniques and knife skills to minimize active
+                            kitchen time while maximizing output.</span>
+                        <span class="lang-es">Domina técnicas de multitarea y habilidades con el cuchillo para minimizar
+                            el tiempo activo en la cocina mientras maximizas el resultado.</span>
+                        <span class="lang-val">Domina tècniques de multitasca i habilitats amb el ganivet per a
+                            minimitzar el temps actiu en la cuina mentre optimitzes el resultat.</span>
+                    </p>
                 </div>
                 <div class="step">
                     <span class="step-number">03</span>
-                    <h3>Smart Storage</h3>
-                    <p style="color: var(--text-light); margin-top: 12px;">Learn the best cooling and freezing methods
-                        to keep your meals fresh, vibrant, and safe for the entire week.</p>
+                    <h3>
+                        <span class="lang-en">Smart Storage</span>
+                        <span class="lang-es">Almacenamiento Inteligente</span>
+                        <span class="lang-val">Emmagatzematge Intel·ligent</span>
+                    </h3>
+                    <p style="color: var(--text-light); margin-top: 12px;">
+                        <span class="lang-en">Learn the best cooling and freezing methods to keep your meals fresh,
+                            vibrant, and safe for the entire week.</span>
+                        <span class="lang-es">Aprende los mejores métodos de enfriamiento y congelación para mantener
+                            tus comidas frescas, vibrantes y seguras durante toda la semana.</span>
+                    </p>
                 </div>
             </div>
         </section>
@@ -409,47 +675,86 @@
         <div style="text-align: center; margin-bottom: 60px;">
             <p
                 style="color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
-                Success Stories</p>
-            <h2>What My Clients Say</h2>
+                <span class="lang-en">Success Stories</span>
+                <span class="lang-es">Historias de Éxito</span>
+                <span class="lang-val">Històries d'Èxit</span>
+            </p>
+            <h2>
+                <span class="lang-en">What My Clients Say</span>
+                <span class="lang-es">Lo Que Dicen Mis Clientes</span>
+                <span class="lang-val">El Que Diuen Els Meus Clients</span>
+            </h2>
         </div>
         <div class="services-grid">
             <div class="service-card" style="text-align: left;">
-                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"The batch cooking
-                    workshop was a game-changer. I now save 5 hours every week and actually enjoy my weekday meals!"</p>
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">
+                    <span class="lang-en">"The batch cooking workshop was a game-changer. I now save 5 hours every week
+                        and actually enjoy my weekday meals!"</span>
+                    <span class="lang-es">"El taller de batch cooking cambió las reglas del juego. ¡Ahora ahorro 5 horas
+                        cada semana y realmente disfruto de mis comidas entre semana!"</span>
+                    <span class="lang-val">"El taller de batch cooking va canviar les regles del joc. Ara estalvie 5
+                        hores cada setmana i realment gaudisc dels meus menjars entre setmana!"</span>
+                </p>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
                         EA</div>
                     <div>
                         <p style="font-weight: 600;">Elena Alvarez</p>
-                        <p style="font-size: 0.8rem; color: var(--text-light);">Busy Professional</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">
+                            <span class="lang-en">Busy Professional</span>
+                            <span class="lang-es">Profesional Ocupada</span>
+                            <span class="lang-val">Professional Ocupada</span>
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="service-card" style="text-align: left;">
-                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"I've tried many diets,
-                    but this personalized counseling focused on sustainable habits. I feel more energetic than ever."
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">
+                    <span class="lang-en">"I’m really happy with the way my diet has been managed to help me perform
+                        better at the gym. I’ve noticed solid muscle gains without putting on fat, and I also feel much
+                        less bloated."</span>
+                    <span class="lang-es">"Estoy muy contento con cómo se ha gestionado mi dieta para ayudarme a rendir
+                        mejor en el gimnasio. He notado ganancias musculares sólidas sin aumentar grasa, y también me
+                        siento mucho menos hinchado."</span>
+                    <span class="lang-val">"Estic molt content amb com s'ha gestionat la meua dieta per a ajudar-me a
+                        rendir millor en el gimnàs. He notat guanys musculars sòlids sense augmentar greix, i també em
+                        sent molt menys inflat."</span>
                 </p>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
-                        MJ</div>
+                        RO</div>
                     <div>
-                        <p style="font-weight: 600;">Marc Jensen</p>
-                        <p style="font-size: 0.8rem; color: var(--text-light);">Athlete</p>
+                        <p style="font-weight: 600;">Raul Ortiz</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">
+                            <span class="lang-en">Athlete</span>
+                            <span class="lang-es">Atleta</span>
+                            <span class="lang-val">Atleta</span>
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="service-card" style="text-align: left;">
-                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">"The pantry optimization
-                    helped me reduce my grocery bill and significantly decreased food waste in our household."</p>
+                <p style="font-style: italic; color: var(--text-light); margin-bottom: 24px;">
+                    <span class="lang-en">"The pantry optimization helped me reduce my grocery bill and significantly
+                        decreased food waste in our household."</span>
+                    <span class="lang-es">"La optimización de la despensa me ayudó a reducir mi factura de la compra y
+                        disminuyó significativamente el desperdicio de alimentos en nuestro hogar."</span>
+                    <span class="lang-val">"L'optimització del rebost em va ajudar a reduir la meua factura de la compra
+                        i va disminuir significativament el desaprofitament d'aliments en la nostra llar."</span>
+                </p>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700;">
                         SL</div>
                     <div>
                         <p style="font-weight: 600;">Sarah Lewis</p>
-                        <p style="font-size: 0.8rem; color: var(--text-light);">Mother of three</p>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">
+                            <span class="lang-en">Mother of three</span>
+                            <span class="lang-es">Madre de tres</span>
+                            <span class="lang-val">Mare de tres</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -459,9 +764,19 @@
     <section id="contact" class="reveal">
         <div class="contact-container">
             <div>
-                <h2 style="margin-bottom: 24px;">Start Your Journey</h2>
-                <p style="color: var(--text-light); margin-bottom: 32px;">Ready to transform your relationship with
-                    food? Contact me today for a free discovery call.</p>
+                <h2 style="margin-bottom: 24px;">
+                    <span class="lang-en">Start Your Journey</span>
+                    <span class="lang-es">Comienza Tu Viaje</span>
+                    <span class="lang-val">Comença el teu Viatge</span>
+                </h2>
+                <p style="color: var(--text-light); margin-bottom: 32px;">
+                    <span class="lang-en">Ready to transform your relationship with food? Contact me today for a free
+                        discovery call.</span>
+                    <span class="lang-es">¿Lista para transformar tu relación con la comida? Contáctame hoy para una
+                        llamada de descubrimiento gratuita.</span>
+                    <span class="lang-val">¿Disposada a transformar la teua relació amb el menjar? Contacta amb mi hui
+                        per a una telefonada de descobriment gratuïta.</span>
+                </p>
                 <div style="display: flex; flex-direction: column; gap: 16px;">
                     <div style="display: flex; align-items: center; gap: 12px;">
                         <i data-lucide="mail" style="color: var(--primary);"></i>
@@ -469,22 +784,32 @@
                     </div>
                     <div style="display: flex; align-items: center; gap: 12px;">
                         <i data-lucide="map-pin" style="color: var(--primary);"></i>
-                        <span>Madrid, Spain (Online Globally)</span>
+                        <span class="lang-en">Zurich, Switzerland (Online Globally)</span>
+                        <span class="lang-es">Zúrich, Suiza (Online Globalmente)</span>
+                        <span class="lang-val">Zuric, Suïssa (Online Globalment)</span>
                     </div>
                 </div>
             </div>
             <form id="contact-form">
                 <div class="form-group">
-                    <input type="text" id="form-name" placeholder="Your Name" required>
+                    <input type="text" id="form-name" placeholder="Your Name" data-placeholder-en="Your Name"
+                        data-placeholder-es="Tu Nombre" data-placeholder-val="El Teu Nom" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="form-email" placeholder="Email Address" required>
+                    <input type="email" id="form-email" placeholder="Email Address" data-placeholder-en="Email Address"
+                        data-placeholder-es="Correo Electrónico" data-placeholder-val="Correu Electrònic" required>
                 </div>
                 <div class="form-group">
                     <textarea id="form-message" rows="5" placeholder="Tell me about your health goals..."
-                        required></textarea>
+                        data-placeholder-en="Tell me about your health goals..."
+                        data-placeholder-es="Cuéntame sobre tus objetivos de salud..."
+                        data-placeholder-val="Parla'm sobre els teus objectius de salut..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span class="lang-en">Send Message</span>
+                    <span class="lang-es">Enviar Mensaje</span>
+                    <span class="lang-val">Enviar Missatge</span>
+                </button>
             </form>
         </div>
     </section>
@@ -492,10 +817,15 @@
     <footer>
         <div style="margin-bottom: 24px;">
             <a href="#" class="logo" style="color: var(--white); justify-content: center;">
-                <i data-lucide="leaf"></i> NutriBatch
+                <i data-lucide="leaf"></i>
+                NutriBatch
             </a>
         </div>
-        <p>&copy; 2026 NutriBatch Dietetics. All rights reserved.</p>
+        <p>&copy; 2026 NutriBatch Dietetics.
+            <span class="lang-en">All rights reserved.</span>
+            <span class="lang-es">Todos los derechos reservados.</span>
+            <span class="lang-val">Tots els drets reservats.</span>
+        </p>
     </footer>
 
     <script>
@@ -506,8 +836,14 @@
             e.preventDefault();
 
             const btn = this.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Sending...';
+            const originalContent = btn.innerHTML; // Save HTML structure (spans) not just text
+
+            const currentLang = document.documentElement.lang;
+            const sendingText = { en: 'Sending...', es: 'Enviando...', val: 'Enviant...' }[currentLang];
+            const successText = { en: 'Message Sent!', es: '¡Mensaje Enviado!', val: 'Missatge Enviat!' }[currentLang];
+            const errorText = { en: 'Error. Try again.', es: 'Error. Inténtalo de nuevo.', val: 'Error. Torna-ho a intentar.' }[currentLang];
+
+            btn.innerText = sendingText;
             btn.disabled = true;
 
             const formData = new URLSearchParams();
@@ -524,20 +860,46 @@
                 });
 
                 // With no-cors, we can't check response, but submission works
-                btn.innerText = 'Message Sent!';
+                btn.innerText = successText;
                 btn.style.backgroundColor = '#10b981';
                 this.reset();
             } catch (error) {
-                btn.innerText = 'Error. Try again.';
+                btn.innerText = errorText;
                 btn.style.backgroundColor = '#ef4444';
             }
 
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerHTML = originalContent; // Restore original HTML (spans)
                 btn.style.backgroundColor = '';
                 btn.disabled = false;
             }, 3000);
         });
+
+        // Language Toggle Logic
+        // const toggleBtn = document.getElementById('lang-toggle');
+        const html = document.documentElement;
+
+        // Check stored language
+        const storedLang = localStorage.getItem('nutribatch-lang') || 'en';
+        setLanguage(storedLang);
+
+        // toggleBtn listener removed
+
+        function setLanguage(lang) {
+            html.lang = lang;
+            localStorage.setItem('nutribatch-lang', lang);
+
+            // Update placeholders
+            const inputs = document.querySelectorAll('[data-placeholder-en]');
+            inputs.forEach(input => {
+                input.placeholder = input.getAttribute(`data-placeholder-${lang}`) || input.getAttribute('data-placeholder-en');
+            });
+
+            // Update Active Flag State
+            document.querySelectorAll('.flag-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-${lang}`);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
 
         // Initialize Lucide Icons
         lucide.createIcons();

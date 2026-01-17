@@ -110,6 +110,13 @@
             color: var(--primary);
         }
 
+        .logo-img {
+            height: 44px;
+            width: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
         /* Buttons */
         .btn {
             padding: 12px 28px;
@@ -392,8 +399,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <i data-lucide="leaf"></i>
-                NutriBatch
+                <img src="NutriBatch_logo.svg" alt="NutriBatch" class="logo-img">
             </a>
             <ul class="nav-links">
                 <li><a href="#about"><span class="lang-en">About</span><span class="lang-es">Sobre Mí</span><span
@@ -817,8 +823,8 @@
     <footer>
         <div style="margin-bottom: 24px;">
             <a href="#" class="logo" style="color: var(--white); justify-content: center;">
-                <i data-lucide="leaf"></i>
-                NutriBatch
+                <img src="NutriBatch_logo.svg" alt="NutriBatch" class="logo-img"
+                    style="filter: brightness(0) invert(1);">
             </a>
         </div>
         <p>&copy; 2026 NutriBatch Dietetics.
